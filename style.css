@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-body: #121214;
+    --base: 194;
+    --primary-color-light: hsla(var(--base), 100%, 63%, 0.13);
+    --primary-color: hsl(var(--base), 100%, 63%);
+    --text-color: #FFF;
+    font-size: 62.5%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-color);
+
+    display: grid;
+}
+
+.hide {
+    display: none;
+}
+
+button {
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+}
+
+button svg {
+    width: clamp(3.2rem, 2rem + 8vw, 6.4rem);
+
+}
+
+.play svg path,
+.pause svg path,
+.sound-on svg path {
+    fill: var(--primary-color);
+}
+
+main {
+    align-self: end;
+    justify-self: center;
+}
+
+#timer {
+    font-size: clamp(4rem, 4rem + 10vw, 8.8rem);
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 1.6rem;
+}
+
+#controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--primary-color-light);
+    border-radius: 9999px;
+
+    width: clamp(10rem, 10rem + 30vw, 22.8rem);
+    height: clamp(8rem, 5rem + 10vw, 10.8rem);
+}
+
+footer {
+    align-self: end;
+    justify-self: end;
+
+    padding: 0 4rem 3.2rem 0;
+}
