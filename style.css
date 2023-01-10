@@ -37,7 +37,6 @@ button {
 
 button svg {
     width: clamp(3.2rem, 2rem + 8vw, 6.4rem);
-
 }
 
 .play svg path,
@@ -63,6 +62,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 3.2rem;
 
     background-color: var(--primary-color-light);
     border-radius: 9999px;
