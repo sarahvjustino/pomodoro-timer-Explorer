@@ -1,37 +1,52 @@
-export function Timer({
+export default function Timer({
     minutesDisplay,
     secondsDisplay,
-    timerTimeOut,
     resetControls
 }) {
-    function resetTimer() {
-        updateTimerDisplay(minutes, 0);
+
+    let timerTimeOut
+    let minutes = Number(minutesDisplay.textContent);
+
+    function reset() {
+        updateDisplay(minutes, 0);
         clearTimeout(timerTimeOut);
     }
 
-    function updateTimerDisplay(minutes, seconds) {
-        minutesDisplay.textContent = String(minutes).padStart(2, '0');
+    function hold() {
+        clearTimeout(timerTimeOut);
+    }
+
+    function updateDisplay(newMinutes, seconds) {
+        newMinutes = newMinutes === undefined ? minutes : newMinutes;
+        seconds = seconds === undefined ? 0 : seconds;
+        minutesDisplay.textContent = String(newMinutes).padStart(2, '0');
         secondsDisplay.textContent = String(seconds).padStart(2, '0');
+    }
+
+    function updateMinutes(newMinutes) {
+        minutes = newMinutes;
     }
 
     function countdown() {
         timerTimeOut = setTimeout(() => {
             let seconds = Number(secondsDisplay.textContent);
             let minutes = Number(minutesDisplay.textContent);
+            let isFinished = minutes <= 0 && seconds <= 0;
 
-            updateTimerDisplay(minutes, 0)
+            updateDisplay(minutes, 0)
 
-            if (minutes <= 0) {
-                resetControls()
-                return
+            if (isFinished) {
+                resetControls();
+                updateDisplay();
+                return;
             }
 
             if (seconds <= 0) {
-                seconds = 60;
+                seconds = 6;
                 --minutes;
             };
 
-            updateTimerDisplay(minutes, String(seconds - 1))
+            updateDisplay(minutes, String(seconds - 1));
 
             countdown();
         }, 1000)
@@ -39,6 +54,9 @@ export function Timer({
 
     return {
         countdown,
-        resetTimer
+        reset,
+        updateDisplay,
+        updateMinutes,
+        hold
     }
 }
